@@ -14,6 +14,15 @@ class OverviewViewModel : ViewModel() {
     val photos: LiveData<List<PicsumPhoto>>
         get() = _photos
 
+    private val _navigateToSecondPhoto = MutableLiveData<Boolean?>()
+
+    val navigateToSecondPhoto: LiveData<Boolean?>
+        get() = _navigateToSecondPhoto
+
+    fun doneNavigating() {
+        _navigateToSecondPhoto.value = null
+    }
+
     init {
         getPicsumPhotos()
     }
@@ -26,6 +35,13 @@ class OverviewViewModel : ViewModel() {
             } catch (e: Exception) {
                 _photos.value = ArrayList()
             }
+        }
+    }
+
+    fun onButtonClick() {
+        viewModelScope.launch {
+            System.err.println("onButtonClick")
+            _navigateToSecondPhoto.value = true
         }
     }
 }

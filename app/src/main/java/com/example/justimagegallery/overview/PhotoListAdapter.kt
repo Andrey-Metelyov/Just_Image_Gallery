@@ -6,10 +6,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.justimagegallery.databinding.ListViewItemBinding
+import com.example.justimagegallery.databinding.TitleViewItemBinding
 import com.example.justimagegallery.network.PicsumPhoto
 
-class PhotoListAdapter() :
-    ListAdapter<PicsumPhoto, PhotoListAdapter.PicsumPhotoViewHolder>(DiffCallback) {
+private const val ITEM_VIEW_TYPE_TITLE = 0
+private const val ITEM_VIEW_TYPE_ITEM = 1
+
+class PhotoListAdapter :
+    ListAdapter<PicsumPhoto, RecyclerView.ViewHolder>(DiffCallback) {
 
     class PicsumPhotoViewHolder(private var binding: ListViewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -17,7 +21,14 @@ class PhotoListAdapter() :
             binding.photo = photo
             binding.executePendingBindings()
         }
+    }
 
+    class PicsumPhotoTitleViewHolder(private var binding: TitleViewItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(photo: PicsumPhoto) {
+            binding.photo = photo
+            binding.executePendingBindings()
+        }
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<PicsumPhoto>() {
@@ -30,12 +41,26 @@ class PhotoListAdapter() :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PicsumPhotoViewHolder {
-        return PicsumPhotoViewHolder(ListViewItemBinding.inflate(LayoutInflater.from(parent.context)))
+    override fun getItemViewType(position: Int): Int {
+        return when (position) {
+            0 -> ITEM_VIEW_TYPE_TITLE
+            else -> ITEM_VIEW_TYPE_ITEM
+        }
     }
 
-    override fun onBindViewHolder(holder: PicsumPhotoViewHolder, position: Int) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            ITEM_VIEW_TYPE_TITLE -> PicsumPhotoTitleViewHolder(TitleViewItemBinding.inflate(LayoutInflater.from(parent.context)))
+            ITEM_VIEW_TYPE_ITEM -> PicsumPhotoViewHolder(ListViewItemBinding.inflate(LayoutInflater.from(parent.context)))
+            else -> throw ClassCastException("Unknown viewType $viewType")
+        }
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val photo = getItem(position)
-        holder.bind(photo)
+        when (holder) {
+            is PicsumPhotoViewHolder -> holder.bind(photo)
+            is PicsumPhotoTitleViewHolder -> holder.bind(photo)
+        }
     }
 }
