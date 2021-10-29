@@ -28,7 +28,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             app:listData="@{viewModel.photos}"
-            tools:itemCount="6"
+            tools:itemCount="100"
             tools:listitem="@layout/list_view_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
