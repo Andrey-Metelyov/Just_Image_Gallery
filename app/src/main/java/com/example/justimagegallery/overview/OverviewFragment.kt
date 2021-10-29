@@ -20,6 +20,8 @@ class OverviewFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        System.err.println("onCreateView")
+
         val binding = FragmentOverviewBinding.inflate(inflater)
 
         binding.lifecycleOwner = this
@@ -29,8 +31,8 @@ class OverviewFragment : Fragment() {
         binding.photosGrid.adapter = PhotoListAdapter()
 
         viewModel.navigateToSecondPhoto.observe(viewLifecycleOwner, Observer {
+            System.err.println("navigateToSecondPhoto")
             if (it == true) {
-                System.err.println("navigateToSecondPhoto")
                 binding.photosGrid.scrollToPosition(12)
                 viewModel.doneNavigating()
             }

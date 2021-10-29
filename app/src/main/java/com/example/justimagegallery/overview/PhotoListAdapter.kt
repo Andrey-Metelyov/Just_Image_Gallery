@@ -58,9 +58,9 @@ class PhotoListAdapter :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val photo = getItem(position)
-        when (holder) {
-            is PicsumPhotoViewHolder -> holder.bind(photo)
-            is PicsumPhotoTitleViewHolder -> holder.bind(photo)
+        when (getItemViewType(position)) {
+            ITEM_VIEW_TYPE_TITLE -> (holder as PicsumPhotoTitleViewHolder).bind(photo)
+            ITEM_VIEW_TYPE_ITEM -> (holder as PicsumPhotoViewHolder).bind(photo)
         }
     }
 }
