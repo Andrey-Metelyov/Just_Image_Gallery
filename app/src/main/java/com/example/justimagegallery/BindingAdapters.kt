@@ -13,6 +13,7 @@ import com.example.justimagegallery.overview.PhotoListAdapter
 fun bindPhoto(imgView: ImageView, downloadUrl: String?) {
     downloadUrl?.let {
         val downloadUri = downloadUrl.toUri().buildUpon().scheme("https").build()
+        System.err.println(downloadUri)
         Glide.with(imgView.context)
             .load(downloadUri)
             .apply(RequestOptions()
