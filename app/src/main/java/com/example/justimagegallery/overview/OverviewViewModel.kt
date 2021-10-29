@@ -19,7 +19,8 @@ class OverviewViewModel : ViewModel() {
     private fun getPicsumPhotos() {
         viewModelScope.launch {
             val listResult = PicsumApi.retrofitService.getPhotos()
-            _status.value = listResult
+            val str = listResult.joinToString { it.downloadUrl }
+            _status.value = str
         }
     }
 }
