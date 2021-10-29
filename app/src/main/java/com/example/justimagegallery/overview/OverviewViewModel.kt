@@ -5,12 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.justimagegallery.network.PicsumApi
+import com.example.justimagegallery.network.PicsumPhoto
 import kotlinx.coroutines.launch
 
 class OverviewViewModel : ViewModel() {
-    private val _status = MutableLiveData<String>()
+    private val _photos = MutableLiveData<List<PicsumPhoto>>()
 
-    val status: LiveData<String> = _status
+    val photos: LiveData<List<PicsumPhoto>>
+        get() = _photos
 
     init {
         getPicsumPhotos()
@@ -18,9 +20,12 @@ class OverviewViewModel : ViewModel() {
 
     private fun getPicsumPhotos() {
         viewModelScope.launch {
-            val listResult = PicsumApi.retrofitService.getPhotos()
-            val str = listResult.joinToString { it.downloadUrl }
-            _status.value = str
+            try {
+                val listResult = PicsumApi.retrofitService.getPhotos()
+                _photos.value = listResult
+            } catch (e: Exception) {
+                _photos.value = ArrayList()
+            }
         }
     }
 }

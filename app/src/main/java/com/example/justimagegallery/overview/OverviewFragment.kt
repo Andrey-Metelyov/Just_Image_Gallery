@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.justimagegallery.databinding.FragmentOverviewBinding
 
 class OverviewFragment : Fragment() {
 
-    private val viewModel : OverviewViewModel by viewModels()
+    private val viewModel : OverviewViewModel by lazy {
+        ViewModelProvider(this).get(OverviewViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,6 +24,8 @@ class OverviewFragment : Fragment() {
         binding.lifecycleOwner = this
 
         binding.viewModel = viewModel
+
+        binding.photosGrid.adapter = PhotoListAdapter()
 
         return binding.root
     }
