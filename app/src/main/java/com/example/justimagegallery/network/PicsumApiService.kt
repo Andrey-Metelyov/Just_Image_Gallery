@@ -1,11 +1,10 @@
 package com.example.justimagegallery.network
 
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 
-private const val BASE_URL = "https://picsum.photos/v2/list?limit=100"
+private const val BASE_URL = "https://picsum.photos/v2/"
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(ScalarsConverterFactory.create())
@@ -13,8 +12,8 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface PicsumApiService {
-    @GET("")
-    fun getProperties(): Call<String>
+    @GET("list?limit=100")
+    suspend fun getPhotos(): String
 }
 
 object PicsumApi {
