@@ -15,14 +15,17 @@
             type="com.example.justimagegallery.overview.OverviewViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="wrap_content"
-            android:layout_height="581dp"
+            android:layout_height="500dp"
+
+            android:layout_weight="1"
             app:cardBackgroundColor="#4CAF50"
             app:cardCornerRadius="16dp"
             app:cardUseCompatPadding="true"
@@ -39,9 +42,7 @@
                     android:id="@+id/imageView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:adjustViewBounds="true"
                     android:contentDescription="@{photo.author}"
-                    android:minHeight="300dp"
                     android:scaleType="center"
                     app:imageUrl="@{photo.downloadUrl}"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -67,17 +68,15 @@
 
         <Button
             android:id="@+id/button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="8dp"
             android:layout_marginBottom="32dp"
 
-            android:text="Остальные картинки ⌵"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+            android:text="@string/button_text" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 
 </layout>
