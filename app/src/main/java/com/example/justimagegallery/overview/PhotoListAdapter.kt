@@ -29,7 +29,6 @@ class PhotoListAdapter(val viewModel: OverviewViewModel) :
             binding.photo = photo
             binding.button.setOnClickListener {
                 System.err.println("setOnClickListener")
-                println("setOnClickListener")
                 viewModel.onButtonClick()
             }
             binding.executePendingBindings()
