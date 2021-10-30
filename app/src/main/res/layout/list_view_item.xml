@@ -30,7 +30,7 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@{photo.author}"
                 android:maxHeight="300dp"
-                android:scaleType="fitXY"
+                android:scaleType="center"
                 app:imageUrl="@{photo.downloadUrl}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
