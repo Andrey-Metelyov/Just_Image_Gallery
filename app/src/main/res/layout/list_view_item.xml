@@ -12,7 +12,7 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         app:cardBackgroundColor="#4CAF50"
@@ -30,7 +30,7 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@{photo.author}"
                 android:maxHeight="300dp"
-                android:scaleType="fitCenter"
+                android:scaleType="fitXY"
                 app:imageUrl="@{photo.downloadUrl}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
