@@ -40,7 +40,6 @@ class OverviewViewModel : ViewModel() {
 
     fun onButtonClick() {
         viewModelScope.launch {
-            System.err.println("onButtonClick")
             _navigateToSecondPhoto.value = true
         }
     }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.justimagegallery.databinding.FragmentOverviewBinding
 
 class OverviewFragment : Fragment() {
@@ -20,7 +21,6 @@ class OverviewFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        System.err.println("onCreateView")
 
         val binding = FragmentOverviewBinding.inflate(inflater)
 
@@ -28,12 +28,13 @@ class OverviewFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-        binding.photosGrid.adapter = PhotoListAdapter()
+        binding.photosGrid.adapter = PhotoListAdapter(viewModel)
 
         viewModel.navigateToSecondPhoto.observe(viewLifecycleOwner, Observer {
             System.err.println("navigateToSecondPhoto")
             if (it == true) {
-                binding.photosGrid.scrollToPosition(12)
+                val layoutManager = binding.photosGrid.layoutManager
+                (layoutManager as StaggeredGridLayoutManager).scrollToPositionWithOffset(1, 0)
                 viewModel.doneNavigating()
             }
         })

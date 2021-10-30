@@ -12,7 +12,7 @@ import com.example.justimagegallery.network.PicsumPhoto
 private const val ITEM_VIEW_TYPE_TITLE = 0
 private const val ITEM_VIEW_TYPE_ITEM = 1
 
-class PhotoListAdapter :
+class PhotoListAdapter(val viewModel: OverviewViewModel) :
     ListAdapter<PicsumPhoto, RecyclerView.ViewHolder>(DiffCallback) {
 
     class PicsumPhotoViewHolder(private var binding: ListViewItemBinding) :
@@ -23,10 +23,15 @@ class PhotoListAdapter :
         }
     }
 
-    class PicsumPhotoTitleViewHolder(private var binding: TitleViewItemBinding) :
+    class PicsumPhotoTitleViewHolder(private var binding: TitleViewItemBinding, val viewModel: OverviewViewModel) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(photo: PicsumPhoto) {
             binding.photo = photo
+            binding.button.setOnClickListener {
+                System.err.println("setOnClickListener")
+                println("setOnClickListener")
+                viewModel.onButtonClick()
+            }
             binding.executePendingBindings()
         }
     }
@@ -50,7 +55,7 @@ class PhotoListAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            ITEM_VIEW_TYPE_TITLE -> PicsumPhotoTitleViewHolder(TitleViewItemBinding.inflate(LayoutInflater.from(parent.context)))
+            ITEM_VIEW_TYPE_TITLE -> PicsumPhotoTitleViewHolder(TitleViewItemBinding.inflate(LayoutInflater.from(parent.context)), viewModel)
             ITEM_VIEW_TYPE_ITEM -> PicsumPhotoViewHolder(ListViewItemBinding.inflate(LayoutInflater.from(parent.context)))
             else -> throw ClassCastException("Unknown viewType $viewType")
         }

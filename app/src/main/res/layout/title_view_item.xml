@@ -22,7 +22,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="wrap_content"
-            android:layout_height="381dp"
+            android:layout_height="581dp"
             app:cardBackgroundColor="#4CAF50"
             app:cardCornerRadius="16dp"
             app:cardUseCompatPadding="true"
@@ -70,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
-            android:onClick="@{() -> viewModel.onButtonClick()}"
+
             android:text="Остальные картинки ⌵"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
