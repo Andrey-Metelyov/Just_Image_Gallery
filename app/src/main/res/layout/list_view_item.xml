@@ -31,7 +31,7 @@
                 android:contentDescription="@{photo.author}"
                 android:maxHeight="300dp"
                 android:scaleType="center"
-                app:imageUrl="@{photo.downloadUrl}"
+                app:imageUrl="@{photo.getAdaptedImageUrl()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
