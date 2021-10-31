@@ -54,7 +54,7 @@ class PhotoListAdapter(val viewModel: OverviewViewModel) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            ITEM_VIEW_TYPE_TITLE -> PicsumPhotoTitleViewHolder(TitleViewItemBinding.inflate(LayoutInflater.from(parent.context)), viewModel)
+            ITEM_VIEW_TYPE_TITLE -> PicsumPhotoTitleViewHolder(TitleViewItemBinding.inflate(LayoutInflater.from(parent.context), parent, false), viewModel)
             ITEM_VIEW_TYPE_ITEM -> PicsumPhotoViewHolder(ListViewItemBinding.inflate(LayoutInflater.from(parent.context)))
             else -> throw ClassCastException("Unknown viewType $viewType")
         }

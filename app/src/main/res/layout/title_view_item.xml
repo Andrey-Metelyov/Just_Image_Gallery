@@ -23,7 +23,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="wrap_content"
-            android:layout_height="500dp"
+            android:layout_height="0dp"
 
             android:layout_weight="1"
             app:cardBackgroundColor="#4CAF50"
@@ -72,7 +72,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginHorizontal="8dp"
-            android:layout_marginBottom="32dp"
 
             android:text="@string/button_text" />
 
